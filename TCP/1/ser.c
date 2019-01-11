@@ -65,6 +65,14 @@ int main()
 		ERROR("bind");
 	}
 	
+	//端口复用
+	int opt = 1;
+	if(setsockopt(sockfd, SOL_SOCKET,SO_REUSEADDR, (const void *) &opt, sizeof(opt)))
+	{
+		ERROR("setsockopt");
+	}
+	
+	
 	//监听
 	Listen(sockfd,num);
 	
